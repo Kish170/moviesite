@@ -16,10 +16,15 @@
 
 <style scoped>
   .header {
+    padding-left: 2%;
     display: flex;
   }
 
+  button {
+    margin-left: 65%;
+  }
+
   img {
-   width:25%;
+   width:10%;
   }
 </style>
