@@ -12,7 +12,7 @@
 <style scoped>
     .hero > h1 {
         background-color:  rgba(0, 0, 0, 0.5);
-        padding: 29.5%;
+        padding: 29%;
         text-align: center;
     }
 

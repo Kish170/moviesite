@@ -1,5 +1,11 @@
 <script setup>
+  import { useRouter } from "vue-router";
 
+  const router = useRouter();
+
+  const toLogin = () => {
+    router.push("./login")
+  }
 </script>
 
 <template>
@@ -9,10 +15,9 @@
       <h1>Terry Pictures</h1>
       <h2>Weaving Stories</h2>
     </div>
-    <button>LOGIN</button>
+    <button @click="toLogin">LOGIN</button>
   </div>
 </template>
-
 
 <style scoped>
   .header {
@@ -25,6 +30,6 @@
   }
 
   img {
-   width:10%;
+   width: 200px;
   }
 </style>
