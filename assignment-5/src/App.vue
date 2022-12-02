@@ -7,7 +7,7 @@
 </template>
 
 <style scoped>
-*,
+/* *,
 ::before,
 ::after {
   padding: 0;
@@ -20,5 +20,5 @@
 .app-container {
   width: 100vw;
   height: 100vh;
-}
+} */
 </style>

@@ -1,35 +1,30 @@
 <script setup>
-  import { useRouter } from "vue-router";
-
-  const router = useRouter();
-
-  const toLogin = () => {
-    router.push("./login")
-  }
 </script>
 
 <template>
   <div class="header">
-  <img src="../images/logo.png" alt="">
+    <img src="../images/logo.png" alt="">
     <div class="company">
       <h1>Terry Pictures</h1>
       <h2>Weaving Stories</h2>
     </div>
-    <button @click="toLogin">LOGIN</button>
+    <RouterLink to="/login" custom v-slot="{ navigate }">
+      <button @click="navigate" role="link">LOGIN</button>
+    </RouterLink>
   </div>
 </template>
 
 <style scoped>
-  .header {
-    padding-left: 2%;
-    display: flex;
-  }
+.header {
+  padding-left: 2%;
+  display: flex;
+}
 
-  button {
-    margin-left: 65%;
-  }
+button {
+  margin-left: 65%;
+}
 
-  img {
-   width: 200px;
-  }
+img {
+  width: 200px;
+}
 </style>
