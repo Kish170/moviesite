@@ -1,13 +1,15 @@
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const name = ref("");
 const password = ref("");
 const error = ref(false);
 
 const login = () => {
-    if (username.value === "tmdb" && password.value === "movies") {
-        router.push("./account");
+    if (name.value === "tmdb" && password.value === "movies") {
+        router.push("./movies");
     } else {
         error.value = true;
     }
@@ -15,7 +17,7 @@ const login = () => {
 </script>
 
 <template>
-    <div class="login">
+    <div class="log">
         <img src="../images/logo.png" alt="">
         <div class="company">
             <h1>Terry Pictures</h1>
@@ -35,7 +37,7 @@ const login = () => {
 
 
 <style scoped>
-    .login {
+    .log {
         padding-left: 2%;
         display: flex;
     }
