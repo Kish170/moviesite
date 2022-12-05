@@ -17,8 +17,8 @@
             })
         ).data
     }
-
-    console.log(movieInfo)
+    await getMovieInfo();
+    console.log(movieInfo.value)
 
     const login = () => {
         router.push("./purchase")
