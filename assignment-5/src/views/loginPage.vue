@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "../store/index.js";
 
+const store = useStore();
 const router = useRouter();
 const name = ref("");
 const password = ref("");
@@ -9,6 +11,7 @@ const error = ref(false);
 
 const login = () => {
     if (name.value === "tmdb" && password.value === "movies") {
+        store.getMovieInfo();
         router.push("./movies");
     } else {
         error.value = true;

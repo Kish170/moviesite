@@ -17,8 +17,9 @@
             })
         ).data
     }
-    await getMovieInfo();
-    console.log(movieInfo.value)
+    // await getMovieInfo();
+    console.log(await getMovieInfo(), movieInfo.value)
+
 
     const login = () => {
         router.push("./purchase")
@@ -32,12 +33,11 @@
         <div class="company">
             <h1>Terry Pictures</h1>
             <h2>Weaving Stories</h2>
+
         </div>
         <button @click="login()">CART</button>
     </div>
 </template>
-
-
 
 <style scoped>
     .header {
