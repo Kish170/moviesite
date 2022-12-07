@@ -20,22 +20,6 @@ const routes = [
   {
     path: "/purchases",
     component: Purchase
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   },
 ];
 

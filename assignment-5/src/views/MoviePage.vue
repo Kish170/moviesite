@@ -4,21 +4,6 @@
     import { useRouter } from "vue-router";
 
     const router = useRouter();
-    const movieInfo = ref(false);
-    const movie = "movie";
-    const timeWindow = "day";
-
-    const getMovieInfo = async() => {
-        movieInfo.value = (
-            await axios.get(`https://api.themoviedb.org/3/trending/${movie}/${timeWindow}`, {
-                params: {
-                    api_key: "261b287b93c009cd3f2fae376443794a",
-                },
-            })
-        ).data
-    }
-    await getMovieInfo();
-    console.log(movieInfo.value)
 
     const login = () => {
         router.push("./purchase")
