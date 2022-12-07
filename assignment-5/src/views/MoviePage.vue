@@ -1,40 +1,58 @@
 <script setup>
-    import { ref } from 'vue'
-    import axios from 'axios'
-    import { useRouter } from "vue-router";
+import { ref } from "vue";
+import axios from "axios";
+import { useRouter } from "vue-router";
 
-    const router = useRouter();
+const router = useRouter();
+const movieInfo = ref(false);
+// const movie = "movie";
+// const timeWindow = "day";
+// const movieID = ref([]);
+// const backDropPath = [];
 
-    const login = () => {
-        router.push("./purchase")
-    }
-
+// const getMovieInfo = async () => {
+//   movieInfo.value = (
+//     await axios.get(`https://api.themoviedb.org/3/trending/${movie}/${timeWindow}`, {
+//       params: {
+//         api_key: "261b287b93c009cd3f2fae376443794a",
+//       },
+//     })
+//   ).data;
+//   console.log(movieInfo.value.results);
+//   for (let movies of movieInfo.value.results) {
+//     movieID.value.push(movies.id);
+//     backDropPath.push(movies.backdrop_path);
+//   }
+// };
+// // await getMovieInfo();
+// await getMovieInfo();
+// console.log(movieID.value);
+// console.log(await getMovieInfo(), movieInfo.value);
+const login = () => {
+  router.push("./purchase");
+};
 </script>
 
 <template>
-    <div class="header">
-        <img src="../images/logo.png" alt="">
-        <div class="company">
-            <h1>Terry Pictures</h1>
-            <h2>Weaving Stories</h2>
-        </div>
-        <button @click="login()">CART</button>
+  <div class="header">
+    <img src="../images/logo.png" alt="" />
+    <div class="company">
+      <h1>Terry Pictures</h1>
+      <h2>Weaving Stories</h2>
     </div>
+    <button @click="login()">CART</button>
+  </div>
 </template>
 
-
-
 <style scoped>
-    .header {
-        padding-left: 2%;
-        display: flex;
-    }
-
-    button {
-        margin-left: 65%;
-    }
-
-    img {
-        width: 200px;
-    }
+.header {
+  padding-left: 2%;
+  display: flex;
+}
+button {
+  margin-left: 65%;
+}
+img {
+  width: 200px;
+}
 </style>
