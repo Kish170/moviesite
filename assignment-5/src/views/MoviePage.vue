@@ -2,9 +2,21 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "../store/index.js";
+// import Modal from "../components/Modal.vue";
 
 const store = useStore();
 const router = useRouter();
+const showModal = ref(false);
+const selectedId = ref(0);
+
+// const openModal = (id) => {
+//   showModal.value = true;
+//   // selectedId.value = id;
+// };
+
+// const closeModal = () => {
+//   showModal.value = false;
+// };
 
 const login = () => {
   router.push("./purchase");
@@ -12,6 +24,11 @@ const login = () => {
 </script>
 
 <template>
+  <!-- <div>
+    <h1>Login</h1>
+    <button @click="openModal(5000)">Modal</button>
+  </div>
+  <SiteModal v-if="showModal" @toggleModal="closeModal()" :id="selectedId" /> -->
   <div class="header">
     <img class="logo" src="../images/logo.png" alt="" />
     <div class="company">
@@ -39,12 +56,13 @@ button {
 img {
   width: 200px;
 }
-/* .posterss { */
-/* color: black;
+.posterss {
+  padding: 1vw;
+  /* color: black;
   display: grid;
   width: 300px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   column-gap: 10vw;
-  row-gap: 10vw;
-} */
+  row-gap: 10vw; */
+}
 </style>

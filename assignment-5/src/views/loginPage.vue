@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { useStore } from "../store/index.js";
+
 const store = useStore();
 const router = useRouter();
 const name = ref("");
@@ -11,8 +12,6 @@ const error = ref(false);
 const movieInfo = ref(false);
 const movie = "movie";
 const timeWindow = "day";
-// const movieID = ref([]);
-// const backDropPath = [];
 
 const getMovieInfo = async () => {
   movieInfo.value = (
@@ -22,10 +21,8 @@ const getMovieInfo = async () => {
       },
     })
   ).data;
-  //   console.log(movieInfo.value.results);
   for (let movies of movieInfo.value.results) {
     store.$patch((state) => {
-      //   state.push({ movieID: movies.id, backDropPath: movies.backdrop_path });
       state.posters.push(movies.poster_path);
       state.title.push(movies.original_title);
       state.releaseDate.push(movies.release_date);
@@ -33,15 +30,9 @@ const getMovieInfo = async () => {
     });
   }
 };
-// await getMovieInfo();
-// await getMovieInfo();
-// console.log(movieID.value);
-// console.log(await getMovieInfo(), movieInfo.value);
-
 const login = () => {
   if (name.value === "tmdb" && password.value === "movies") {
     getMovieInfo();
-    // console.log(store.posters, store.title, store.releaseDate);
     router.push("./movies");
   } else {
     error.value = true;
