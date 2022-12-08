@@ -1,30 +1,33 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { ref } from "vue";
 
 export const useStore = defineStore('store', {
   state: () => {
     return {
-      movie: "movie",
-      timeWindow: "day",
-      movieInfo: false,
-      movieID: [],
-      backdropPath: [],
+    //   movie: "movie",
+    //   timeWindow: "day",
+    //   movieInfo: "",
+      posters: [],
+      title: [],
+      releaseDate: [],
     }
   },
   actions: {
-     async getMovieInfo() {
-        this.movieInfo.value = (
-            await axios.get(`https://api.themoviedb.org/3/trending/${this.movie}/${this.timeWindow}`, {
-                params: {
-                    api_key: "261b287b93c009cd3f2fae376443794a",
-                },
-            })
-        ).data
+    //  async getMovieInfo() {
+    //     const movieInfo = ref("");
+    //     movieInfo.value = (
+    //         await axios.get(`https://api.themoviedb.org/3/trending/${this.movie}/${this.timeWindow}`, {
+    //             params: {
+    //                 api_key: "261b287b93c009cd3f2fae376443794a",
+    //             },
+    //         })
+    //     ).data
 
-        for (movies in this.movieInfo.results) {
-            this.movieID.push(movies.id)
-            this.backDropPath.push(movies.backdrop_path)
-        }
-    },
+    //     for (let movies of movieInfo.value.results) {
+    //         this.movieID.value.push(movies.id)
+    //         this.backDropPath.value.push(movies.backdrop_path)
+    //     }
+    // },
   },
 });

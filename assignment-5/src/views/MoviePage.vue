@@ -1,33 +1,11 @@
 <script setup>
 import { ref } from "vue";
-import axios from "axios";
 import { useRouter } from "vue-router";
+import { useStore } from "../store/index.js";
 
+const store = useStore();
 const router = useRouter();
-const movieInfo = ref(false);
-// const movie = "movie";
-// const timeWindow = "day";
-// const movieID = ref([]);
-// const backDropPath = [];
 
-// const getMovieInfo = async () => {
-//   movieInfo.value = (
-//     await axios.get(`https://api.themoviedb.org/3/trending/${movie}/${timeWindow}`, {
-//       params: {
-//         api_key: "261b287b93c009cd3f2fae376443794a",
-//       },
-//     })
-//   ).data;
-//   console.log(movieInfo.value.results);
-//   for (let movies of movieInfo.value.results) {
-//     movieID.value.push(movies.id);
-//     backDropPath.push(movies.backdrop_path);
-//   }
-// };
-// // await getMovieInfo();
-// await getMovieInfo();
-// console.log(movieID.value);
-// console.log(await getMovieInfo(), movieInfo.value);
 const login = () => {
   router.push("./purchase");
 };
@@ -35,13 +13,19 @@ const login = () => {
 
 <template>
   <div class="header">
-    <img src="../images/logo.png" alt="" />
+    <img class="logo" src="../images/logo.png" alt="" />
     <div class="company">
       <h1>Terry Pictures</h1>
       <h2>Weaving Stories</h2>
     </div>
     <button @click="login()">CART</button>
   </div>
+  <img
+    class="posterss"
+    v-for="poster in store.posters"
+    :src="`https://image.tmdb.org/t/p/w500${poster}`"
+    alt=""
+  />
 </template>
 
 <style scoped>
@@ -55,4 +39,12 @@ button {
 img {
   width: 200px;
 }
+/* .posterss { */
+/* color: black;
+  display: grid;
+  width: 300px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 10vw;
+  row-gap: 10vw;
+} */
 </style>
