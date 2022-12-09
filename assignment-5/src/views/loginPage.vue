@@ -27,8 +27,7 @@ const getMovieInfo = async () => {
     store.$patch((state) => {
       //   state.push({ movieID: movies.id, backDropPath: movies.backdrop_path });
       state.posters.push(movies.poster_path);
-      state.title.push(movies.original_title);
-      state.releaseDate.push(movies.release_date);
+      state.id.push(movies.id);
       state.hasChanged = true;
     });
   }

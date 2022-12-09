@@ -9,8 +9,7 @@ export const useStore = defineStore('store', {
     //   timeWindow: "day",
     //   movieInfo: "",
       posters: [],
-      title: [],
-      releaseDate: [],
+      id: [],
     }
   },
   actions: {
