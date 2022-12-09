@@ -17,7 +17,6 @@ const openModal = (id) => {
 const closeModal = () => {
   showModal.value = false;
 };
-
 const login = () => {
   router.push("./purchase");
 };
