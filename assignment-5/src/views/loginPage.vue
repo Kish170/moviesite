@@ -3,7 +3,6 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { useStore } from "../store/index.js";
-
 const store = useStore();
 const router = useRouter();
 const name = ref("");
@@ -12,7 +11,6 @@ const error = ref(false);
 const movieInfo = ref(false);
 const movie = "movie";
 const timeWindow = "day";
-
 const getMovieInfo = async () => {
   movieInfo.value = (
     await axios.get(`https://api.themoviedb.org/3/trending/${movie}/${timeWindow}`, {

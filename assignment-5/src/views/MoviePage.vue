@@ -17,18 +17,14 @@ const openModal = (id) => {
 const closeModal = () => {
   showModal.value = false;
 };
+
 const login = () => {
   router.push("./purchase");
 };
 </script>
 
 <template>
-  <div>
-    <h1>Login</h1>
-    <button @click="openModal(5000)">Modal</button>
-    <!-- connect id to images somehow, probably using the alt-->
-  </div>
-  <SiteModal v-if="showModal" @toggleModal="closeModal()" :id="selectedId" />
+  <Modal v-if="showModal" @toggleModal="closeModal()" :id="selectedId" />
   <div class="header">
     <img class="logo" src="../images/logo.png" alt="" />
     <div class="company">
@@ -41,7 +37,8 @@ const login = () => {
     class="posterss"
     v-for="(poster, index) in store.posters"
     :src="`https://image.tmdb.org/t/p/w500${poster}`"
-    :alt="`${store.id[index]}`"
+    @click="openModal(store.id[index])"
+    alt=""
   />
 </template>
 
