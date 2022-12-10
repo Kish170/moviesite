@@ -1,21 +1,31 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import { useStore } from "../store/index.js";
 
+const store = useStore();
 const props = defineProps(["id"]);
 const emits = defineEmits(["toggleModal"]);
-const selected = ref(null);
-// const movieInfo = ref(false);
-console.log(props.id);
+// const selected = ref(null);
+const movieInfo = ref(false);
 const getMoviesInfo = async () => {
   movieInfo.value = (
     await axios.get(`https://api.themoviedb.org/3/movie/${props.id}`, {
       params: {
         api_key: "261b287b93c009cd3f2fae376443794a",
-        append_to_response: "videos",
       },
     })
   ).data;
+};
+await getMoviesInfo();
+
+const purchaseMovie = () => {
+  getMoviesInfo();
+  store.$patch((state) => {
+    // state.boughtId.push(props.id);
+    state.boughtPosters.push(movieInfo.value.poster_path);
+    // console.log(movieInfo.value.poster_path);
+  });
 };
 </script>
 
@@ -24,19 +34,26 @@ const getMoviesInfo = async () => {
     <div class="modal-outer-container" @click.self="emits('toggleModal')">
       <div class="modal-inner-container">
         <button class="close-button" @click="emits('toggleModal')">X</button>
-        <div v-if="movieInfo">
-          <!-- <img :src="`https://image.tmdb.org/t/p/w500${movieInfo.poster_path}`" alt="" /> -->
-          <h1>{{ movieInfo.title }}</h1>
-          <p>
-            Release Date: {{ movieInfo.release_date }} | Popularity:
-            {{ movieInfo.popularity }} | Runtime: {{ movieInfo.runtime }}
-          </p>
-          <p>
-            Vote Average: {{ movieInfo.vote_average }} | Vote Count:
-            {{ movieInfo.vote_count }}
-          </p>
-          <h2>Overview:</h2>
-          <p>{{ movieInfo.overview }}</p>
+        <div v-if="movieInfo" class="info-container">
+          <img
+            class="poster"
+            :src="`https://image.tmdb.org/t/p/w500${movieInfo.poster_path}`"
+            alt=""
+          />
+          <div class="info">
+            <h1>{{ movieInfo.title }}</h1>
+            <p>
+              Release Date: {{ movieInfo.release_date }} | Popularity:
+              {{ movieInfo.popularity }} | Runtime: {{ movieInfo.runtime }}
+            </p>
+            <p>
+              Vote Average: {{ movieInfo.vote_average }} | Vote Count:
+              {{ movieInfo.vote_count }}
+            </p>
+            <h2>Overview:</h2>
+            <p>{{ movieInfo.overview }}</p>
+            <button @click="purchaseMovie()" type="reset">ADD</button>
+          </div>
         </div>
       </div>
     </div>
@@ -73,5 +90,21 @@ const getMoviesInfo = async () => {
   font-weight: bold;
   font-size: 1.25rem;
   color: white;
+}
+
+.info-container {
+  color: white;
+  position: absolute;
+  display: flex;
+  padding: 5%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.info {
+  padding: 2%;
+}
+
+img {
+  height: 300px;
 }
 </style>

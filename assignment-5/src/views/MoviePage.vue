@@ -19,7 +19,7 @@ const closeModal = () => {
 };
 
 const login = () => {
-  router.push("./purchase");
+  router.push("./purchases");
 };
 </script>
 
@@ -55,11 +55,5 @@ img {
 }
 .posterss {
   padding: 1vw;
-  /* color: black;
-  display: grid;
-  width: 300px;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  column-gap: 10vw;
-  row-gap: 10vw; */
 }
 </style>
