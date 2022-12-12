@@ -97,7 +97,20 @@ const purchaseMovie = () => {
   position: absolute;
   display: flex;
   padding: 5%;
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.5); */
+}
+
+h1 {
+  padding: 5%;
+}
+
+p {
+  padding: 2%;
+  padding-left: 5%;
+}
+
+h2 {
+  padding: 5%;
 }
 
 .info {
@@ -105,6 +118,16 @@ const purchaseMovie = () => {
 }
 
 img {
-  height: 300px;
+  height: 450px;
+}
+
+button {
+  margin-top: 10%;
+  padding: 2%;
+  height: auto;
+  width: 100px;
+  color: white;
+  background-color: #f9bc50;
+  margin-left: 80%;
 }
 </style>

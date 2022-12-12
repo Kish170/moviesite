@@ -43,9 +43,10 @@ button {
   margin-left: 65%;
 }
 img {
-  width: 200px;
+  width: 100px;
 }
 .posterss {
+  width: 200px;
   padding: 1vw;
 }
 </style>

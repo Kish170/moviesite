@@ -1,9 +1,8 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <div class="header">
-    <img src="../images/logo.png" alt="">
+    <img src="../images/logo.png" alt="" />
     <div class="company">
       <h1>Terry Pictures</h1>
       <h2>Weaving Stories</h2>
@@ -21,10 +20,10 @@
 }
 
 button {
-  margin-left: 65%;
+  margin-left: 70%;
 }
 
 img {
-  width: 200px;
+  width: 100px;
 }
 </style>

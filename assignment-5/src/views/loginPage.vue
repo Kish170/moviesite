@@ -39,15 +39,17 @@ const login = () => {
 
 <template>
   <div class="log">
-    <img src="../images/logo.png" alt="" />
     <div class="company">
-      <h1>Terry Pictures</h1>
-      <h2>Weaving Stories</h2>
+      <img src="../images/logo.png" alt="" />
+      <div>
+        <h1>Terry Pictures</h1>
+        <h2>Weaving Stories</h2>
+      </div>
     </div>
     <form @submit.prevent="login()">
       <input type="text" placeholder="UserName" v-model="name" />
       <input type="password" placeholder="Password" v-model="password" />
-      <input type="submit" value="Login" />
+      <input type="submit" value="LOGIN" />
     </form>
     <div v-if="error" class="submitted">
       <p>Incorrect Username/Password!</p>
@@ -56,17 +58,22 @@ const login = () => {
 </template>
 
 <style scoped>
-.log {
-  padding-left: 2%;
+.company {
   display: flex;
+}
+.log {
+  display: flex;
+  flex-direction: column;
+  /* background: url("../images/movieWallpaper.jpg") no-repeat center/cover; */
 }
 button {
   margin-left: 65%;
 }
 img {
-  width: 200px;
+  width: 100px;
 }
-form {
+input {
+  color: white;
   display: inline-block;
 }
 </style>
