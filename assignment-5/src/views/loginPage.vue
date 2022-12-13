@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { useStore } from "../store/index.js";
+
 const store = useStore();
 const router = useRouter();
 const name = ref("");
@@ -10,26 +11,10 @@ const password = ref("");
 const error = ref(false);
 const movieInfo = ref(false);
 const movie = "movie";
-const timeWindow = "day";
-const getMovieInfo = async () => {
-  movieInfo.value = (
-    await axios.get(`https://api.themoviedb.org/3/trending/${movie}/${timeWindow}`, {
-      params: {
-        api_key: "261b287b93c009cd3f2fae376443794a",
-      },
-    })
-  ).data;
-  for (let movies of movieInfo.value.results) {
-    store.$patch((state) => {
-      state.posters.push(movies.poster_path);
-      state.id.push(movies.id);
-      state.hasChanged = true;
-    });
-  }
-};
+
 const login = () => {
   if (name.value === "tmdb" && password.value === "movies") {
-    getMovieInfo();
+    store.getMovies();
     router.push("./movies");
   } else {
     error.value = true;
@@ -41,7 +26,7 @@ const login = () => {
   <div class="log">
     <div class="company">
       <img src="../images/logo.png" alt="" />
-      <div>
+      <div class="info">
         <h1>Terry Pictures</h1>
         <h2>Weaving Stories</h2>
       </div>
@@ -59,12 +44,14 @@ const login = () => {
 
 <style scoped>
 .company {
+  padding: 5%;
   display: flex;
 }
 .log {
   display: flex;
-  flex-direction: column;
-  /* background: url("../images/movieWallpaper.jpg") no-repeat center/cover; */
+  /* flex-direction: column; */
+  /* justify-items: center; */
+  /* align-items: center; */
 }
 button {
   margin-left: 65%;

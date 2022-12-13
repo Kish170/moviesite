@@ -27,9 +27,8 @@ const store = useStore();
   </div>
   <img
     class="posterss"
-    v-for="(posters, index) in store.boughtPosters"
+    v-for="posters in store.boughtPosters"
     :src="`https://image.tmdb.org/t/p/w500${posters}`"
-    @click="openModal(store.boughtId[index])"
     alt=""
   />
 </template>
