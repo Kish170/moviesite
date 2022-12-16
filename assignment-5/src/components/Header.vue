@@ -2,7 +2,7 @@
 
 <template>
   <div class="header">
-    <img src="../images/logo.png" alt="" />
+    <img class="logo" src="../images/logo.png" alt="" />
     <div class="company">
       <h1>Terry Pictures</h1>
       <h2>Weaving Stories</h2>
@@ -23,7 +23,7 @@ button {
   margin-left: 70%;
 }
 
-img {
+.logo {
   width: 100px;
 }
 </style>

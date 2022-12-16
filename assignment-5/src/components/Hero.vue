@@ -36,4 +36,8 @@
   width: 230px;
   text-transform: uppercase;
 }
+
+img {
+  width: 100px;
+}
 </style>

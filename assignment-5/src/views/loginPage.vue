@@ -23,35 +23,55 @@ const login = () => {
 </script>
 
 <template>
-  <div class="log">
-    <div class="company">
-      <img src="../images/logo.png" alt="" />
-      <div class="info">
-        <h1>Terry Pictures</h1>
-        <h2>Weaving Stories</h2>
+  <div class="background">
+    <div class="log">
+      <div class="company">
+        <img src="../images/logo.png" alt="" />
+        <div class="info">
+          <h1>Terry Pictures</h1>
+          <h2>Weaving Stories</h2>
+        </div>
       </div>
-    </div>
-    <form @submit.prevent="login()">
-      <input type="text" placeholder="UserName" v-model="name" />
-      <input type="password" placeholder="Password" v-model="password" />
-      <input type="submit" value="LOGIN" />
-    </form>
-    <div v-if="error" class="submitted">
-      <p>Incorrect Username/Password!</p>
+      <form @submit.prevent="login()">
+        <input type="text" placeholder="UserName" v-model="name" />
+        <input type="password" placeholder="Password" v-model="password" />
+        <input type="submit" value="LOGIN" />
+      </form>
+      <div v-if="error" class="submitted">
+        <p>Incorrect Username/Password!</p>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.5;
+  background: url("../images/movieWallpaper.jpg") no-repeat center/cover;
+  /* background: #f9bc50; */
+  z-index: -1;
+}
 .company {
   padding: 5%;
   display: flex;
+  font-size: 20px;
 }
 .log {
+  background: white;
+  width: 500px;
+  height: 500px;
   display: flex;
-  /* flex-direction: column; */
-  /* justify-items: center; */
-  /* align-items: center; */
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
 }
 button {
   margin-left: 65%;
@@ -60,7 +80,11 @@ img {
   width: 100px;
 }
 input {
-  color: white;
-  display: inline-block;
+  font-size: 20px;
+}
+form {
+  padding-top: 15%;
+  display: flex;
+  flex-direction: column;
 }
 </style>

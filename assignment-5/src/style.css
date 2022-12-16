@@ -1,7 +1,6 @@
 * {
     padding: 0%;
     margin: 0%;
-    background-color: black;
 }
 
 h1 {
@@ -11,12 +10,10 @@ h1 {
 }
 
 p {
-    color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 h2 {
-    color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
