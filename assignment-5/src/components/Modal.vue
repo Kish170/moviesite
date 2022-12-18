@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useStore } from "../store/index.js";
-
 const store = useStore();
 const props = defineProps(["id"]);
 const emits = defineEmits(["toggleModal"]);
@@ -18,7 +17,6 @@ const getMoviesInfo = async () => {
   ).data;
 };
 await getMoviesInfo();
-
 // const purchaseMovie = () => {
 //   getMoviesInfo();
 //   store.$patch((state) => {
@@ -52,7 +50,13 @@ await getMoviesInfo();
             </p>
             <h2>Overview:</h2>
             <p>{{ movieInfo.overview }}</p>
-            <button @click="store.addtoCart({ movieInfo })">ADD</button>
+            <button
+              @click="
+                store.add(movieInfo.poster_path, movieInfo.title, movieInfo.overview)
+              "
+            >
+              ADD
+            </button>
           </div>
         </div>
       </div>
@@ -73,14 +77,12 @@ await getMoviesInfo();
   background: #00000099;
   z-index: 3;
 }
-
 .modal-outer-container .modal-inner-container {
   background-color: #1f2123;
   width: clamp(280px, 100%, 800px);
-  height: 400px;
+  height: 520px;
   position: relative;
 }
-
 .modal-outer-container .modal-inner-container .close-button {
   position: absolute;
   right: 0px;
@@ -91,7 +93,6 @@ await getMoviesInfo();
   font-size: 1.25rem;
   color: white;
 }
-
 .info-container {
   color: white;
   position: absolute;
@@ -99,28 +100,22 @@ await getMoviesInfo();
   padding: 5%;
   /* background-color: rgba(0, 0, 0, 0.5); */
 }
-
 h1 {
   padding: 5%;
 }
-
 p {
   padding: 2%;
   padding-left: 5%;
 }
-
 h2 {
   padding: 5%;
 }
-
 .info {
   padding: 2%;
 }
-
 img {
   height: 450px;
 }
-
 button {
   margin-top: 10%;
   padding: 2%;

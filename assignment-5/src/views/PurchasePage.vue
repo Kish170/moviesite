@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useStore } from "../store/index.js";
-
 const store = useStore();
 // const getMoviesInfo = async (id) => {
 //   movieInfo.value = (
@@ -26,12 +25,19 @@ console.log(store.cart);
       <h2>Weaving Stories</h2>
     </div>
   </div>
-  <img
+  <div class="boughtMovies" v-for="boughtMovies in store.cart">
+    <img :src="`https://image.tmdb.org/t/p/w500${boughtMovies.posters}`" alt="" />
+    <div class="info">
+      <h2>{{ boughtMovies.titles }}</h2>
+      <p>{{ boughtMovies.overviews }}</p>
+    </div>
+  </div>
+  <!-- <img
     class="posterss"
-    v-for="movie in store.cart"
-    :src="`https://image.tmdb.org/t/p/w500${movie.poster}`"
+    v-for="boughtMovies in store.cart"
+    :src="`https://image.tmdb.org/t/p/w500${boughtMovies.posters}`"
     alt=""
-  />
+  /> -->
 </template>
 
 <style scoped>
@@ -43,10 +49,20 @@ button {
   margin-left: 65%;
 }
 img {
+  width: 200px;
+}
+.logo {
   width: 100px;
 }
 .posterss {
   width: 200px;
   padding: 1vw;
+}
+.boughtMovies {
+  display: flex;
+  padding: 2%;
+}
+.info {
+  padding: 2%;
 }
 </style>

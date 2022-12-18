@@ -3,7 +3,6 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { useStore } from "../store/index.js";
-
 const store = useStore();
 const router = useRouter();
 const name = ref("");
@@ -11,7 +10,6 @@ const password = ref("");
 const error = ref(false);
 const movieInfo = ref(false);
 const movie = "movie";
-
 const login = () => {
   if (name.value === "tmdb" && password.value === "movies") {
     store.getMovies();

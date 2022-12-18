@@ -8,7 +8,7 @@ export const useStore = defineStore('store', {
       movies: [],
       // id: [],
       boughtPosters: [],
-      cart: []
+      cart:[]
     }
   },
   actions: { 
@@ -28,8 +28,14 @@ export const useStore = defineStore('store', {
 
       console.log(this.movies[0].poster)
     },
-    addtoCart(data) {
-      this.cart = {poster: data.poster_path}
-    }
+
+    add (poster, title, overview) {
+      this.cart.push({
+        posters: poster,
+        titles: title,
+        overviews: overview
+      })
+    },
+
   },
 });

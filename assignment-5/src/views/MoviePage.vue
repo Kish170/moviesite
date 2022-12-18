@@ -3,25 +3,20 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "../store/index.js";
 import Modal from "../components/Modal.vue";
-
 const store = useStore();
 const router = useRouter();
 const showModal = ref(false);
 const selectedId = ref(0);
-
 const openModal = (id) => {
   showModal.value = true;
   selectedId.value = id;
 };
-
 const closeModal = () => {
   showModal.value = false;
 };
-
 const login = () => {
   router.push("./purchases");
 };
-
 // console.log(store.movies[0].poster);
 </script>
 
@@ -49,11 +44,9 @@ const login = () => {
   padding-left: 2%;
   display: flex;
 }
-
 button {
   margin-left: 70%;
 }
-
 img {
   width: 100px;
 }
