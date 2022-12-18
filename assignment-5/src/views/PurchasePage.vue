@@ -14,7 +14,6 @@ const store = useStore();
 //   ).data;
 // };
 // await getMoviesInfo();
-console.log(store.cart);
 </script>
 
 <template>
@@ -30,6 +29,7 @@ console.log(store.cart);
     <div class="info">
       <h2>{{ boughtMovies.titles }}</h2>
       <p>{{ boughtMovies.overviews }}</p>
+      <button>REMOVE</button>
     </div>
   </div>
   <!-- <img
@@ -59,10 +59,20 @@ img {
   padding: 1vw;
 }
 .boughtMovies {
+  background-color: #f9bc50;
   display: flex;
   padding: 2%;
 }
 .info {
+  padding: 2%;
+}
+button {
+  border: 10px;
+  width: 100px;
+  background-color: black;
+  color: white;
+  margin-left: 80%;
+  margin-top: 20%;
   padding: 2%;
 }
 </style>
