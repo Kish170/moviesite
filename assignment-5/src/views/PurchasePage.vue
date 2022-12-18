@@ -15,6 +15,7 @@ const store = useStore();
 //   ).data;
 // };
 // await getMoviesInfo();
+console.log(store.cart);
 </script>
 
 <template>
@@ -27,8 +28,8 @@ const store = useStore();
   </div>
   <img
     class="posterss"
-    v-for="posters in store.boughtPosters"
-    :src="`https://image.tmdb.org/t/p/w500${posters}`"
+    v-for="movie in store.cart"
+    :src="`https://image.tmdb.org/t/p/w500${movie.poster}`"
     alt=""
   />
 </template>

@@ -19,14 +19,14 @@ const getMoviesInfo = async () => {
 };
 await getMoviesInfo();
 
-const purchaseMovie = () => {
-  getMoviesInfo();
-  store.$patch((state) => {
-    // state.boughtId.push(props.id);
-    state.boughtPosters.push(movieInfo.value.poster_path);
-    // console.log(movieInfo.value.poster_path);
-  });
-};
+// const purchaseMovie = () => {
+//   getMoviesInfo();
+//   store.$patch((state) => {
+//     // state.boughtId.push(props.id);
+//     state.boughtPosters.push(movieInfo.value.poster_path);
+//     // console.log(movieInfo.value.poster_path);
+//   });
+// };
 </script>
 
 <template>
@@ -52,7 +52,7 @@ const purchaseMovie = () => {
             </p>
             <h2>Overview:</h2>
             <p>{{ movieInfo.overview }}</p>
-            <button @click="purchaseMovie()" type="reset">ADD</button>
+            <button @click="store.addtoCart({ movieInfo })">ADD</button>
           </div>
         </div>
       </div>

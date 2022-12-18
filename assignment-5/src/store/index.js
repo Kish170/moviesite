@@ -7,7 +7,8 @@ export const useStore = defineStore('store', {
     return {
       movies: [],
       // id: [],
-      boughtPosters: []
+      boughtPosters: [],
+      cart: []
     }
   },
   actions: { 
@@ -26,6 +27,9 @@ export const useStore = defineStore('store', {
       })
 
       console.log(this.movies[0].poster)
+    },
+    addtoCart(data) {
+      this.cart = {poster: data.poster_path}
     }
   },
 });
