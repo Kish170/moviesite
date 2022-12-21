@@ -36,6 +36,7 @@ img {
 }
 .logo {
   width: 100px;
+  height: 100px;
 }
 .posterss {
   width: 200px;
