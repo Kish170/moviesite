@@ -2,18 +2,14 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useStore } from "../store/index.js";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 const store = useStore();
-// const getMoviesInfo = async (id) => {
-//   movieInfo.value = (
-//     await axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
-//       params: {
-//         api_key: "261b287b93c009cd3f2fae376443794a",
-//         append_to_response: "videos",
-//       },
-//     })
-//   ).data;
-// };
-// await getMoviesInfo();
+
+const toMovies = () => {
+  router.push("./movies");
+};
 </script>
 
 <template>
@@ -23,13 +19,16 @@ const store = useStore();
       <h1>Terry Pictures</h1>
       <h2>Weaving Stories</h2>
     </div>
+    <button @click="toMovies()">MOVIES</button>
   </div>
   <div class="boughtMovies" v-for="boughtMovies in store.cart">
     <img :src="`https://image.tmdb.org/t/p/w500${boughtMovies.posters}`" alt="" />
     <div class="info">
       <h2>{{ boughtMovies.titles }}</h2>
       <p>{{ boughtMovies.overviews }}</p>
-      <button>REMOVE</button>
+      <button @click="store.remove(boughtMovies.posters)" class="removeButton">
+        REMOVE
+      </button>
     </div>
   </div>
   <!-- <img
@@ -44,9 +43,6 @@ const store = useStore();
 .header {
   padding-left: 2%;
   display: flex;
-}
-button {
-  margin-left: 65%;
 }
 img {
   width: 200px;
@@ -66,7 +62,7 @@ img {
 .info {
   padding: 2%;
 }
-button {
+.removeButton {
   border: 10px;
   width: 100px;
   background-color: black;
@@ -74,5 +70,9 @@ button {
   margin-left: 80%;
   margin-top: 20%;
   padding: 2%;
+}
+
+button {
+  margin-left: 70%;
 }
 </style>
