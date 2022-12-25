@@ -31,12 +31,6 @@ const toMovies = () => {
       </button>
     </div>
   </div>
-  <!-- <img
-    class="posterss"
-    v-for="boughtMovies in store.cart"
-    :src="`https://image.tmdb.org/t/p/w500${boughtMovies.posters}`"
-    alt=""
-  /> -->
 </template>
 
 <style scoped>
@@ -49,6 +43,7 @@ img {
 }
 .logo {
   width: 100px;
+  height: 100px;
 }
 .posterss {
   width: 200px;
@@ -68,7 +63,7 @@ img {
   background-color: black;
   color: white;
   margin-left: 80%;
-  margin-top: 20%;
+  margin-top: 15%;
   padding: 2%;
 }
 

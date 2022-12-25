@@ -117,7 +117,7 @@ img {
   height: 450px;
 }
 button {
-  margin-top: 10%;
+  margin-top: 5%;
   padding: 2%;
   height: auto;
   width: 100px;

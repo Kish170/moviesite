@@ -75,7 +75,7 @@ button {
   margin-left: 65%;
 }
 img {
-  width: 100px;
+  width: 10vw;
 }
 input {
   font-size: 20px;

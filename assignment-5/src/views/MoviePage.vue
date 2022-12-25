@@ -47,8 +47,9 @@ const login = () => {
 button {
   margin-left: 70%;
 }
-img {
+.logo {
   width: 100px;
+  height: 100px;
 }
 .posterss {
   width: 200px;
