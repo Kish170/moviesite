@@ -26,7 +26,7 @@ const toMovies = () => {
     <div class="info">
       <h2>{{ boughtMovies.titles }}</h2>
       <p>{{ boughtMovies.overviews }}</p>
-      <button @click="store.remove(boughtMovies.posters)" class="removeButton">
+      <button @click="store.remove(boughtMovies.titles)" class="removeButton">
         REMOVE
       </button>
     </div>

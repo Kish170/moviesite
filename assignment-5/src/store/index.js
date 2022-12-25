@@ -39,8 +39,8 @@ export const useStore = defineStore('store', {
 
     remove (poster) {
       let index = this.cart.indexOf(poster)
-      this.cart.splice(index, 1)
+      this.cart.splice(index, 1); 
+      console.log(poster)
     }
-
   },
 });
