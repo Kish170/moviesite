@@ -5,7 +5,6 @@ import { useStore } from "../store/index.js";
 const store = useStore();
 const props = defineProps(["id"]);
 const emits = defineEmits(["toggleModal"]);
-// const selected = ref(null);
 const movieInfo = ref(false);
 const getMoviesInfo = async () => {
   movieInfo.value = (
@@ -17,14 +16,6 @@ const getMoviesInfo = async () => {
   ).data;
 };
 await getMoviesInfo();
-// const purchaseMovie = () => {
-//   getMoviesInfo();
-//   store.$patch((state) => {
-//     // state.boughtId.push(props.id);
-//     state.boughtPosters.push(movieInfo.value.poster_path);
-//     // console.log(movieInfo.value.poster_path);
-//   });
-// };
 </script>
 
 <template>
@@ -98,7 +89,6 @@ await getMoviesInfo();
   position: absolute;
   display: flex;
   padding: 5%;
-  /* background-color: rgba(0, 0, 0, 0.5); */
 }
 h1 {
   padding: 5%;
@@ -115,6 +105,7 @@ h2 {
 }
 img {
   height: 450px;
+  width: max-content;
 }
 button {
   margin-top: 5%;

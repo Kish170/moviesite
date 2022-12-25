@@ -3,13 +3,14 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { useStore } from "../store/index.js";
+
 const store = useStore();
 const router = useRouter();
 const name = ref("");
 const password = ref("");
 const error = ref(false);
 const movieInfo = ref(false);
-const movie = "movie";
+
 const login = () => {
   if (name.value === "tmdb" && password.value === "movies") {
     store.getMovies();
@@ -25,7 +26,7 @@ const login = () => {
     <div class="log">
       <div class="company">
         <img src="../images/logo.png" alt="" />
-        <div class="info">
+        <div>
           <h1>Terry Pictures</h1>
           <h2>Weaving Stories</h2>
         </div>
@@ -35,7 +36,7 @@ const login = () => {
         <input type="password" placeholder="Password" v-model="password" />
         <input type="submit" value="LOGIN" />
       </form>
-      <div v-if="error" class="submitted">
+      <div v-if="error">
         <p>Incorrect Username/Password!</p>
       </div>
     </div>
@@ -52,9 +53,7 @@ const login = () => {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  opacity: 0.5;
   background: url("../images/movieWallpaper.jpg") no-repeat center/cover;
-  /* background: #f9bc50; */
   z-index: -1;
 }
 .company {
@@ -70,12 +69,6 @@ const login = () => {
   flex-direction: column;
   justify-items: center;
   align-items: center;
-}
-button {
-  margin-left: 65%;
-}
-img {
-  width: 10vw;
 }
 input {
   font-size: 20px;

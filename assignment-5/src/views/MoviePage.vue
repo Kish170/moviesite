@@ -17,7 +17,6 @@ const closeModal = () => {
 const login = () => {
   router.push("./purchases");
 };
-// console.log(store.movies[0].poster);
 </script>
 
 <template>
@@ -30,13 +29,15 @@ const login = () => {
     </div>
     <button @click="login()">CART</button>
   </div>
-  <img
-    class="posterss"
-    v-for="movie in store.movies"
-    :src="`https://image.tmdb.org/t/p/w500${movie.poster}`"
-    @click="openModal(movie.id)"
-    alt=""
-  />
+  <div class="movie-grid">
+    <img
+      class="posters"
+      v-for="movie in store.movies"
+      :src="`https://image.tmdb.org/t/p/w500${movie.poster}`"
+      @click="openModal(movie.id)"
+      alt=""
+    />
+  </div>
 </template>
 
 <style scoped>
@@ -51,8 +52,12 @@ button {
   width: 100px;
   height: 100px;
 }
-.posterss {
+.posters {
   width: 200px;
+  height: max-content;
   padding: 1vw;
+}
+.movie-grid {
+  margin-left: 5vw;
 }
 </style>

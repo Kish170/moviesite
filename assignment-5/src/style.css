@@ -22,4 +22,15 @@ button {
     color: #F9BC50;
     border: none;
     background: none;
+    margin-left: 70vw;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+.header {
+    padding-left: 2%;
+    display: flex;
 }

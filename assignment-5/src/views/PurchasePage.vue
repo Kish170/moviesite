@@ -40,6 +40,7 @@ const toMovies = () => {
 }
 img {
   width: 200px;
+  height: max-content;
 }
 .logo {
   width: 100px;
@@ -62,12 +63,8 @@ img {
   width: 100px;
   background-color: black;
   color: white;
-  margin-left: 80%;
-  margin-top: 15%;
-  padding: 2%;
-}
-
-button {
-  margin-left: 70%;
+  margin-left: 90%;
+  margin-top: 10%;
+  padding: 1%;
 }
 </style>
