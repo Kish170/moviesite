@@ -22,7 +22,7 @@ button {
     color: #F9BC50;
     border: none;
     background: none;
-    margin-left: 70vw;
+    margin-left: 5vw;
 }
 
 img {
@@ -34,3 +34,7 @@ img {
     padding-left: 2%;
     display: flex;
 }
+
+.company {
+    padding-right: 50vmax;
+  }

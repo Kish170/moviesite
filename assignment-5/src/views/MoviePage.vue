@@ -14,8 +14,14 @@ const openModal = (id) => {
 const closeModal = () => {
   showModal.value = false;
 };
-const login = () => {
+const toCart = () => {
   router.push("./purchases");
+};
+const toHome = () => {
+  router.push("./");
+};
+const toLogin = () => {
+  router.push("./login");
 };
 </script>
 
@@ -27,7 +33,9 @@ const login = () => {
       <h1>Terry Pictures</h1>
       <h2>Weaving Stories</h2>
     </div>
-    <button @click="login()">CART</button>
+    <button @click="toCart()">CART</button>
+    <button @click="toLogin()">LOGIN</button>
+    <button @click="toHome()">HOMEPAGE</button>
   </div>
   <div class="movie-grid">
     <img
@@ -45,9 +53,6 @@ const login = () => {
   padding-left: 2%;
   display: flex;
 }
-button {
-  margin-left: 70%;
-}
 .logo {
   width: 100px;
   height: 100px;
@@ -60,4 +65,7 @@ button {
 .movie-grid {
   margin-left: 5vw;
 }
+/* button {
+  margin-left: 16vw;
+} */
 </style>

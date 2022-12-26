@@ -37,10 +37,12 @@ export const useStore = defineStore('store', {
       })
     },
 
-    remove (poster) {
-      let index = this.cart.indexOf(poster)
+    remove (title) {
+      const index = this.cart.findIndex(object => {
+        return object.titles === title
+      })
       this.cart.splice(index, 1); 
-      console.log(poster)
+      
     }
   },
 });

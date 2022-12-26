@@ -13,4 +13,8 @@
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+button {
+  margin-left: 16vw;
+}
+</style>

@@ -10,6 +10,12 @@ const store = useStore();
 const toMovies = () => {
   router.push("./movies");
 };
+const toHome = () => {
+  router.push("./");
+};
+const toLogin = () => {
+  router.push("./login");
+};
 </script>
 
 <template>
@@ -20,13 +26,15 @@ const toMovies = () => {
       <h2>Weaving Stories</h2>
     </div>
     <button @click="toMovies()">MOVIES</button>
+    <button @click="toLogin()">LOGIN</button>
+    <button @click="toHome()">HOMEPAGE</button>
   </div>
   <div class="boughtMovies" v-for="boughtMovies in store.cart">
     <img :src="`https://image.tmdb.org/t/p/w500${boughtMovies.posters}`" alt="" />
     <div class="info">
       <h2>{{ boughtMovies.titles }}</h2>
       <p>{{ boughtMovies.overviews }}</p>
-      <button @click="store.remove(boughtMovies.titles)" class="removeButton">
+      <button @click="store.remove(boughtMovies.titles)" class="remove-button">
         REMOVE
       </button>
     </div>
@@ -58,13 +66,13 @@ img {
 .info {
   padding: 2%;
 }
-.removeButton {
+.remove-button {
   border: 10px;
   width: 100px;
   background-color: black;
   color: white;
-  margin-left: 90%;
-  margin-top: 10%;
+  margin-left: 70vmax;
+  margin-top: 150px;
   padding: 1%;
 }
 </style>
