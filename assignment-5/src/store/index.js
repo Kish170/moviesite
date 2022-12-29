@@ -6,7 +6,6 @@ export const useStore = defineStore('store', {
   state: () => {
     return {
       movies: [],
-      // id: [],
       boughtPosters: [],
       cart:[]
     }
@@ -25,8 +24,6 @@ export const useStore = defineStore('store', {
           poster: movie.poster_path,
         }
       })
-
-      console.log(this.movies[0].poster)
     },
 
     add (poster, title, overview) {
@@ -42,7 +39,6 @@ export const useStore = defineStore('store', {
         return object.titles === title
       })
       this.cart.splice(index, 1); 
-      
     }
   },
 });

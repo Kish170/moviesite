@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from "vue";
-import axios from "axios";
 import { useStore } from "../store/index.js";
 import { useRouter } from "vue-router";
 
@@ -20,7 +19,7 @@ const toLogin = () => {
 
 <template>
   <div class="header">
-    <img class="logo" src="../images/logo.png" alt="" />
+    <img src="../images/logo.png" alt="" />
     <div class="company">
       <h1>Terry Pictures</h1>
       <h2>Weaving Stories</h2>
@@ -29,8 +28,12 @@ const toLogin = () => {
     <button @click="toLogin()">LOGIN</button>
     <button @click="toHome()">HOMEPAGE</button>
   </div>
-  <div class="boughtMovies" v-for="boughtMovies in store.cart">
-    <img :src="`https://image.tmdb.org/t/p/w500${boughtMovies.posters}`" alt="" />
+  <div class="bought-movies" v-for="boughtMovies in store.cart">
+    <img
+      :src="`https://image.tmdb.org/t/p/w500${boughtMovies.posters}`"
+      alt=""
+      class="posters"
+    />
     <div class="info">
       <h2>{{ boughtMovies.titles }}</h2>
       <p>{{ boughtMovies.overviews }}</p>
@@ -42,23 +45,11 @@ const toLogin = () => {
 </template>
 
 <style scoped>
-.header {
-  padding-left: 2%;
-  display: flex;
-}
-img {
+.posters {
   width: 200px;
   height: max-content;
 }
-.logo {
-  width: 100px;
-  height: 100px;
-}
-.posterss {
-  width: 200px;
-  padding: 1vw;
-}
-.boughtMovies {
+.bought-movies {
   background-color: #f9bc50;
   display: flex;
   padding: 2%;
@@ -70,9 +61,15 @@ img {
   border: 10px;
   width: 100px;
   background-color: black;
-  color: white;
+  color: #f9bc50;
   margin-left: 70vmax;
   margin-top: 150px;
   padding: 1%;
+}
+.remove-button:active {
+  transform: translateY(4px);
+}
+.remove-button:hover {
+  background-color: white;
 }
 </style>

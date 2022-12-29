@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import axios from "axios";
 import { useStore } from "../store/index.js";
 
 const store = useStore();
@@ -9,7 +8,6 @@ const router = useRouter();
 const name = ref("");
 const password = ref("");
 const error = ref(false);
-const movieInfo = ref(false);
 
 const login = () => {
   if (name.value === "tmdb" && password.value === "movies") {
@@ -45,21 +43,12 @@ const login = () => {
 
 <style scoped>
 .background {
-  position: fixed;
-  top: 0;
-  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
   height: 100vh;
   background: url("../images/movieWallpaper.jpg") no-repeat center/cover;
   z-index: -1;
-}
-.company {
-  padding: 5%;
-  display: flex;
-  font-size: 20px;
 }
 .log {
   background: white;
@@ -67,8 +56,12 @@ const login = () => {
   height: 500px;
   display: flex;
   flex-direction: column;
-  justify-items: center;
   align-items: center;
+}
+.company {
+  padding: 5%;
+  display: flex;
+  font-size: 20px;
 }
 input {
   font-size: 20px;

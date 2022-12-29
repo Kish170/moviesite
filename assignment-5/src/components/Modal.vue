@@ -2,10 +2,12 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useStore } from "../store/index.js";
+
 const store = useStore();
 const props = defineProps(["id"]);
 const emits = defineEmits(["toggleModal"]);
 const movieInfo = ref(false);
+
 const getMoviesInfo = async () => {
   movieInfo.value = (
     await axios.get(`https://api.themoviedb.org/3/movie/${props.id}`, {
@@ -15,6 +17,7 @@ const getMoviesInfo = async () => {
     })
   ).data;
 };
+
 await getMoviesInfo();
 </script>
 
@@ -22,7 +25,6 @@ await getMoviesInfo();
   <Teleport to="body">
     <div class="modal-outer-container" @click.self="emits('toggleModal')">
       <div class="modal-inner-container">
-        <button class="close-button" @click="emits('toggleModal')">X</button>
         <div v-if="movieInfo" class="info-container">
           <img
             class="poster"
@@ -68,12 +70,14 @@ await getMoviesInfo();
   background: #00000099;
   z-index: 3;
 }
+
 .modal-outer-container .modal-inner-container {
   background-color: #1f2123;
   width: clamp(280px, 100%, 800px);
-  height: 520px;
+  height: 570px;
   position: relative;
 }
+
 .modal-outer-container .modal-inner-container .close-button {
   position: absolute;
   right: 0px;
@@ -84,29 +88,36 @@ await getMoviesInfo();
   font-size: 1.25rem;
   color: white;
 }
+
 .info-container {
   color: white;
   position: absolute;
   display: flex;
   padding: 5%;
 }
+
 h1 {
   padding: 5%;
 }
+
 p {
   padding: 2%;
   padding-left: 5%;
 }
+
 h2 {
   padding: 5%;
 }
+
 .info {
   padding: 2%;
 }
+
 img {
   height: 450px;
   width: max-content;
 }
+
 button {
   margin-top: 5%;
   padding: 2%;
@@ -115,5 +126,13 @@ button {
   color: white;
   background-color: #f9bc50;
   margin-left: 80%;
+}
+
+button:active {
+  transform: translateY(4px);
+}
+
+button:hover {
+  background-color: rgb(0, 0, 0);
 }
 </style>
