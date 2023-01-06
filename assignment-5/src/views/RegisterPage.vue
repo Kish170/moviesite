@@ -1,5 +1,5 @@
 <script setup>
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/index.js";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
@@ -11,20 +11,19 @@ const email = ref("");
 const password = ref("");
 // const error = ref(false);
 
-const register = () => {
-  router.push("./register");
-};
-
 const login = () => {
-  signInWithEmailAndPassword(auth, email.value, password.value)
+  router.push("./login");
+};
+const register = () => {
+  createUserWithEmailAndPassword(auth, email.value, password.value)
     .then((userCredential) => {
       const user = userCredential.user;
-      store.getMovies();
-      router.push("./movies");
+      router.push("./login");
     })
     .catch((error) => {
       const errorCode = error.code;
       alert(error.message);
+      error.value = true;
     });
 };
 </script>
@@ -39,15 +38,15 @@ const login = () => {
           <h2>Weaving Stories</h2>
         </div>
       </div>
-      <form @submit.prevent="login()">
+      <form @submit.prevent="register()">
         <input type="text" placeholder="Email" v-model="email" />
         <input type="password" placeholder="Password" v-model="password" />
         <input type="submit" value="LOGIN" />
       </form>
+      <button @click="login()">LOGIN</button>
       <!-- <div v-if="error">
-        <p>{{ errorMessage }}!</p>
+        <p>{{ errorMessage }}</p>
       </div> -->
-      <button @click="register()">REGISTER</button>
     </div>
   </div>
 </template>
