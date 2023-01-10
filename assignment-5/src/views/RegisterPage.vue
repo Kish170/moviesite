@@ -7,23 +7,33 @@ import { useStore } from "../store/index.js";
 
 const store = useStore();
 const router = useRouter();
+const username = ref("");
 const email = ref("");
 const password = ref("");
-// const error = ref(false);
+const password1 = ref("");
+const passwordError = ref(false);
+const userInfoError = ref(false);
 
 const login = () => {
   router.push("./login");
 };
+
 const register = () => {
   createUserWithEmailAndPassword(auth, email.value, password.value)
     .then((userCredential) => {
       const user = userCredential.user;
       router.push("./login");
     })
-    .catch((error) => {
-      const errorCode = error.code;
-      alert(error.message);
-      error.value = true;
+    .catch((err) => {
+      const code = err.code;
+    })
+    .finally(() => {
+      if (password.value !== password1.value) {
+        passwordError.value = true;
+        return;
+      } else {
+        userInfoError.value = true;
+      }
     });
 };
 </script>
@@ -39,14 +49,15 @@ const register = () => {
         </div>
       </div>
       <form @submit.prevent="register()">
+        <input type="text" placeholder="Username" v-model="username" />
         <input type="text" placeholder="Email" v-model="email" />
         <input type="password" placeholder="Password" v-model="password" />
+        <input type="password" placeholder="Re-enter Password" v-model="password1" />
         <input type="submit" value="LOGIN" />
       </form>
       <button @click="login()">LOGIN</button>
-      <!-- <div v-if="error">
-        <p>{{ errorMessage }}</p>
-      </div> -->
+      <p v-if="passwordError">Re-entered password does not match password</p>
+      <p v-else-if="userInfoError">Username or Email error</p>
     </div>
   </div>
 </template>
