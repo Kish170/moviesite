@@ -1,5 +1,9 @@
 <script setup>
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../firebase/index.js";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
@@ -9,23 +13,36 @@ const store = useStore();
 const router = useRouter();
 const email = ref("");
 const password = ref("");
-// const error = ref(false);
+const errorMessage = ref("");
+const errorCheck = ref(false);
 
 const register = () => {
   router.push("./register");
 };
 
 const login = () => {
-  signInWithEmailAndPassword(auth, email.value, password.value)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      store.getMovies();
-      router.push("./movies");
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      alert(error.message);
-    });
+  try {
+    signInWithEmailAndPassword(auth, email.value, password.value).then(
+      (userCredential) => {
+        const user = userCredential.user;
+        store.getMovies();
+        router.push("./movies");
+      }
+    );
+  } catch (error) {
+    errorCheck.value = true;
+    errorMessage.value = error.message;
+  }
+};
+
+const registerUserByGoogle = async () => {
+  const provider = new GoogleAuthProvider();
+  await signInWithPopup(auth, provider).then((result) => {
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    const user = result.user;
+    router.push("./movies");
+  });
 };
 </script>
 
@@ -44,15 +61,25 @@ const login = () => {
         <input type="password" placeholder="Password" v-model="password" />
         <input type="submit" value="LOGIN" />
       </form>
-      <!-- <div v-if="error">
-        <p>{{ errorMessage }}!</p>
-      </div> -->
+      <div class="google">
+        <p>Register by Google</p>
+        <button @click="registerUserByGoogle">Google</button>
+      </div>
+      <p v-if="errorCheck">{{ errorMessage }}!</p>
       <button @click="register()">REGISTER</button>
     </div>
   </div>
 </template>
 
 <style scoped>
+.google {
+  display: flex;
+  padding: 2%;
+}
+.google > button {
+  margin: 0%;
+  margin-left: 10px;
+}
 .background {
   display: flex;
   justify-content: center;

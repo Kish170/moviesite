@@ -1,5 +1,9 @@
 <script setup>
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../firebase/index.js";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
@@ -13,28 +17,40 @@ const password = ref("");
 const password1 = ref("");
 const passwordError = ref(false);
 const userInfoError = ref(false);
+const messageError = ref("");
 
 const login = () => {
   router.push("./login");
 };
 
-const register = () => {
-  createUserWithEmailAndPassword(auth, email.value, password.value)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      router.push("./login");
-    })
-    .catch((err) => {
-      const code = err.code;
-    })
-    .finally(() => {
-      if (password.value !== password1.value) {
-        passwordError.value = true;
-        return;
-      } else {
-        userInfoError.value = true;
+const register = async () => {
+  try {
+    await createUserWithEmailAndPassword(auth, email.value, password.value).then(
+      (userCredential) => {
+        const user = userCredential.user;
+        router.push("./login");
       }
-    });
+    );
+  } catch (error) {
+    if (password.value !== password1.value) {
+      passwordError.value = true;
+      return;
+    } else {
+      userInfoError.value = true;
+      messageError.value = error.message;
+      console.log(messageError.value);
+    }
+  }
+};
+
+const registerUserByGoogle = async () => {
+  const provider = new GoogleAuthProvider();
+  await signInWithPopup(auth, provider).then((result) => {
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    const user = result.user;
+    router.push("./movies");
+  });
 };
 </script>
 
@@ -49,20 +65,31 @@ const register = () => {
         </div>
       </div>
       <form @submit.prevent="register()">
-        <input type="text" placeholder="Username" v-model="username" />
         <input type="text" placeholder="Email" v-model="email" />
         <input type="password" placeholder="Password" v-model="password" />
         <input type="password" placeholder="Re-enter Password" v-model="password1" />
         <input type="submit" value="LOGIN" />
+        <p v-if="userInfoError">{{ messageError.value }}</p>
+        <p v-else-if="passwordError">Re-entered password does not match password</p>
       </form>
+      <div class="google">
+        <p>Register by Google</p>
+        <button @click="registerUserByGoogle">Google</button>
+      </div>
       <button @click="login()">LOGIN</button>
-      <p v-if="passwordError">Re-entered password does not match password</p>
-      <p v-else-if="userInfoError">Username or Email error</p>
     </div>
   </div>
 </template>
 
 <style scoped>
+.google {
+  display: flex;
+  padding: 2%;
+}
+.google > button {
+  margin: 0%;
+  margin-left: 10px;
+}
 .background {
   display: flex;
   justify-content: center;
@@ -97,7 +124,7 @@ button {
   width: 100px;
   background-color: black;
   color: #f9bc50;
-  margin-right: 40px;
+  margin-right: 17%;
   margin-top: 50px;
   padding: 1%;
 }
