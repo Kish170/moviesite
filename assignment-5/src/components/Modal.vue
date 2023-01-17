@@ -45,7 +45,7 @@ let data = (
                   id: data.id,
                   poster: data.poster_path,
                   title: data.title,
-                  date: data.release_date,
+                  overview: data.overview,
                 })
               "
             >

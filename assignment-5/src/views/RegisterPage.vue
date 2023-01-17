@@ -16,31 +16,27 @@ const email = ref("");
 const password = ref("");
 const password1 = ref("");
 const passwordError = ref(false);
-const userInfoError = ref(false);
-const messageError = ref("");
+const errorCheck = ref(false);
+const errorMessage = ref("");
 
 const login = () => {
   router.push("./login");
 };
 
 const register = async () => {
-  try {
-    await createUserWithEmailAndPassword(auth, email.value, password.value).then(
-      (userCredential) => {
-        const user = userCredential.user;
-        router.push("./login");
-      }
-    );
-  } catch (error) {
-    if (password.value !== password1.value) {
-      passwordError.value = true;
-      return;
-    } else {
-      userInfoError.value = true;
-      messageError.value = error.message;
-      console.log(messageError.value);
-    }
+  if (password.value !== password1.value) {
+    passwordError.value = true;
+    return;
   }
+  createUserWithEmailAndPassword(auth, email.value, password.value)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      router.push("./login");
+    })
+    .catch((error) => {
+      errorCheck.value = true;
+      errorMessage.value = error.message;
+    });
 };
 
 const registerUserByGoogle = async () => {
@@ -69,9 +65,10 @@ const registerUserByGoogle = async () => {
         <input type="password" placeholder="Password" v-model="password" />
         <input type="password" placeholder="Re-enter Password" v-model="password1" />
         <input type="submit" value="LOGIN" />
-        <p v-if="userInfoError">{{ messageError.value }}</p>
-        <p v-else-if="passwordError">Re-entered password does not match password</p>
+        <p v-if="errorCheck">{{ errorMessage }}!</p>
+        <!-- <p v-else-if="passwordError">Re-entered password does not match password</p> -->
       </form>
+
       <div class="google">
         <p>Register by Google</p>
         <button @click="registerUserByGoogle">Google</button>

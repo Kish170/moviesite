@@ -21,18 +21,15 @@ const register = () => {
 };
 
 const login = () => {
-  try {
-    signInWithEmailAndPassword(auth, email.value, password.value).then(
-      (userCredential) => {
-        const user = userCredential.user;
-        store.getMovies();
-        router.push("./movies");
-      }
-    );
-  } catch (error) {
-    errorCheck.value = true;
-    errorMessage.value = error.message;
-  }
+  signInWithEmailAndPassword(auth, email.value, password.value)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      router.push("./movies");
+    })
+    .catch((error) => {
+      errorCheck.value = true;
+      errorMessage.value = error.message;
+    });
 };
 
 const registerUserByGoogle = async () => {
@@ -76,10 +73,12 @@ const registerUserByGoogle = async () => {
   display: flex;
   padding: 2%;
 }
+
 .google > button {
   margin: 0%;
   margin-left: 10px;
 }
+
 .background {
   display: flex;
   justify-content: center;
@@ -88,6 +87,7 @@ const registerUserByGoogle = async () => {
   background: url("../images/movieWallpaper.jpg") no-repeat center/cover;
   z-index: -1;
 }
+
 .log {
   background: white;
   width: 500px;
@@ -96,19 +96,23 @@ const registerUserByGoogle = async () => {
   flex-direction: column;
   align-items: center;
 }
+
 .company {
   padding: 5%;
   display: flex;
   font-size: 20px;
 }
+
 input {
   font-size: 20px;
 }
+
 form {
   padding-top: 15%;
   display: flex;
   flex-direction: column;
 }
+
 button {
   border: 10px;
   width: 100px;

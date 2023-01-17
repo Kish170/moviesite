@@ -30,13 +30,13 @@ const toLogin = () => {
   </div>
   <div class="bought-movies" v-for="boughtMovies in Array.from(store.cart.values())">
     <img
-      :src="`https://image.tmdb.org/t/p/w500${boughtMovies.posters}`"
+      :src="`https://image.tmdb.org/t/p/w500${boughtMovies.poster}`"
       alt=""
       class="posters"
     />
     <div class="info">
-      <h2>{{ boughtMovies.titles }}</h2>
-      <p>{{ boughtMovies.overviews }}</p>
+      <h2>{{ boughtMovies.title }}</h2>
+      <p>{{ boughtMovies.overview }}</p>
       <button @click="store.removeFromCart(boughtMovies.id)" class="remove-button">
         REMOVE
       </button>
