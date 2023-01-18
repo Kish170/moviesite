@@ -7,6 +7,7 @@ export const useStore = defineStore('store', {
   state: () => {
     return {
       movies: [],
+      topMovies: [],
       cart:new Map()
     }
   },
@@ -30,10 +31,26 @@ export const useStore = defineStore('store', {
         });
         await setDoc(doc(firestore, "Genre", value), { data });
       });
-    },
 
+    const movie = []
+    let data  =  (await axios.get("https://api.themoviedb.org/3/trending/movie/week", {
+      params: {
+        api_key: "261b287b93c009cd3f2fae376443794a",
+      }
+      })).data.results;
+      data = data.map((movie) => {
+        return {
+          id: movie.id,
+          image: movie.poster_path
+        }
+      });
+      await setDoc(doc(firestore, "Top Movies", "Movies"), { data });
+    },
     async getMovies(genre) {
       this.movies = (await getDoc(doc(firestore, "Genre", genre))).data().data;
+    },
+    async getTopMovies() {
+      this.topMovies = (await getDoc(doc(firestore, "Top Movies", "Movies"))).data().data;
     },
     addToCart(id, data) {
       this.cart.set(id, data);

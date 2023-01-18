@@ -19,7 +19,6 @@ const errorCheck = ref(false);
 const register = () => {
   router.push("./register");
 };
-
 const login = () => {
   signInWithEmailAndPassword(auth, email.value, password.value)
     .then((userCredential) => {

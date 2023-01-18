@@ -12,7 +12,7 @@ const selectedId = ref(0);
 const searchedMovie = ref("");
 const criteria = ref("");
 const searchResults = ref([]);
-const genre = ref(28);
+const genre = ref("Family");
 const page = ref(1);
 const totalPages = ref(0);
 
@@ -59,6 +59,8 @@ const search = async (direction) => {
     };
   });
 };
+await store.getTopMovies();
+await getGenres();
 // await store.populateFirestore();
 </script>
 
@@ -82,6 +84,17 @@ const search = async (direction) => {
     <button @click="toLogin()">LOGIN</button>
     <button @click="toHome()">HOMEPAGE</button>
   </div>
+  <h1 id="top-movie-heading">Top Movies</h1>
+  <div class="top-movie-grid">
+    <img
+      class="top-movies"
+      v-for="movie in store.topMovies"
+      :src="`https://image.tmdb.org/t/p/w500${movie.image}`"
+      @click="openModal(movie.id)"
+      alt=""
+    />
+  </div>
+
   <template v-if="searchResults.length">
     <div class="navigation">
       <h1>{{ `Page ${page} of ${totalPages}` }}</h1>
@@ -112,6 +125,9 @@ const search = async (direction) => {
 </template>
 
 <style scoped>
+#top-movie-heading {
+  padding-left: 2%;
+}
 .navigation {
   display: flex;
   margin-left: 7%;
@@ -134,24 +150,29 @@ const search = async (direction) => {
   margin-top: 5%;
 }
 .movie {
-  height: 300px;
-  width: 200px;
+  height: 500px;
+  width: max-content;
   padding: 2%;
 }
-select {
-  margin-top: 60px;
-  height: min-content;
+.top-movies {
+  height: 200px;
+  width: max-content;
+  padding: 2%;
 }
-.posters {
-  width: 500px;
-  height: max-content;
-  padding: 1vw;
+.top-movie-grid {
+  background-color: black;
+  display: flex;
+  overflow-x: scroll;
+}
+select {
+  margin-top: 40px;
+  height: min-content;
 }
 .movie-grid {
   margin-left: 5vw;
 }
 input {
-  margin-top: 60px;
+  margin-top: 40px;
   height: min-content;
 }
 .company {
