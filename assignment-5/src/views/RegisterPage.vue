@@ -66,7 +66,7 @@ const registerUserByGoogle = async () => {
         <input type="password" placeholder="Re-enter Password" v-model="password1" />
         <input type="submit" value="LOGIN" />
         <p v-if="errorCheck">{{ errorMessage }}!</p>
-        <!-- <p v-else-if="passwordError">Re-entered password does not match password</p> -->
+        <p v-else-if="passwordError">Re-entered password does not match password</p>
       </form>
 
       <div class="google">

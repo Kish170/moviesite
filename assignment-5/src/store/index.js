@@ -52,7 +52,7 @@ export const useStore = defineStore('store', {
     async getTopMovies() {
       this.topMovies = (await getDoc(doc(firestore, "Top Movies", "Movies"))).data().data;
     },
-    addToCart(id, data) { assi
+    addToCart(id, data) { 
       this.cart.set(id, data);
     },
     removeFromCart(id) {

@@ -6,7 +6,6 @@ import { useStore } from "../store/index.js";
 const store = useStore();
 const props = defineProps(["id"]);
 const emits = defineEmits(["toggleModal"]);
-// const movieInfo = ref(false);
 
 let data = (
   await axios.get(`https://api.themoviedb.org/3/movie/${props.id}`, {
