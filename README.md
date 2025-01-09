@@ -21,3 +21,6 @@
 - Clone the repository locally
 - Install the dependencies by running `npm install`
 - Run the project through `npm run dev`
+
+## Credits
+Code written by Kishan Rajagunathas and project idea provided by Omar Qayum
